@@ -28,10 +28,10 @@ public class Rocket : MonoBehaviour {
             print("Pick one or go Straight!");
         } else if (Input.GetKey(KeyCode.A))
         {
-            print("Left Rotate");
+            transform.Rotate(Vector3.forward);
         } else if (Input.GetKey(KeyCode.D))
         {
-            print("Right Rotate");
+            transform.Rotate(-Vector3.forward);
         }
     }
 }
