@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class Space_Ship : MonoBehaviour
 {
-
+    [SerializeField] float rcsThrust = 100f;
+    [SerializeField] float mainThrust = 100f;
     Rigidbody rigidBody;
     AudioSource audioSource;
 
@@ -25,9 +26,10 @@ public class Space_Ship : MonoBehaviour
 
     private void Thrust()
     {
+        float thrustThisFrame = mainThrust * Time.deltaTime;
         if (Input.GetKey(KeyCode.UpArrow)) //can thrust while rotating
         {
-            rigidBody.AddRelativeForce(Vector3.up);
+            rigidBody.AddRelativeForce(Vector3.up * thrustThisFrame);
             if (!audioSource.isPlaying)
             {
                 audioSource.Play();
@@ -41,6 +43,7 @@ public class Space_Ship : MonoBehaviour
 
     private void Rotate()
     {
+        float rotationThisFrame = rcsThrust * Time.deltaTime;
         rigidBody.freezeRotation = true; //manually control rotation
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow))
         {
@@ -48,11 +51,11 @@ public class Space_Ship : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.Rotate(Vector3.forward);
+            transform.Rotate(Vector3.forward * rotationThisFrame);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            transform.Rotate(-Vector3.forward);
+            transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
         rigidBody.freezeRotation = false; //resume normal physics control
     }
