@@ -108,7 +108,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1118833717622566}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.03, y: 1.56, z: 0}
+  m_LocalPosition: {x: -22.08, y: 9.12, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4636866731767848}
@@ -218,7 +218,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 78d16f2582d79b84c83e968e197bd266, type: 2}
+  - {fileID: 2100000, guid: d848e64e8241c164baec87edef0dc487, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -286,7 +286,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 78d16f2582d79b84c83e968e197bd266, type: 2}
+  - {fileID: 2100000, guid: d848e64e8241c164baec87edef0dc487, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -397,7 +397,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: b445b40fc6bbd3e47a20f89e061f8fe1, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
-  m_Pitch: 0.8
+  m_Pitch: 0.39
   Loop: 0
   Mute: 0
   Spatialize: 0
@@ -452,13 +452,13 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   reverbZoneMixCustomCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 2
       time: 0
-      value: 1
+      value: 0.629
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rcsthrust: 250
-  mainTrust: 800
+  mainTrust: 1000
 --- !u!136 &136092722911279926
 CapsuleCollider:
   m_ObjectHideFlags: 1

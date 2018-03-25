@@ -43,7 +43,7 @@ RenderSettings:
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -89,7 +89,8 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaIndirect: 2
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ShowResolutionOverlay: 1
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000002, guid: 12c0a8cb69aca2d40bc96004216e17e9,
+    type: 2}
   m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
@@ -1920,21 +1921,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    - target: {fileID: 114821518051333436, guid: 8321f357e6631254581db93aa5db3c0e,
-        type: 2}
-      propertyPath: mainTrust
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 23926387185263236, guid: 8321f357e6631254581db93aa5db3c0e,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d848e64e8241c164baec87edef0dc487, type: 2}
-    - target: {fileID: 23166595606893430, guid: 8321f357e6631254581db93aa5db3c0e,
-        type: 2}
-      propertyPath: m_Materials.Array.data[0]
-      value: 
-      objectReference: {fileID: 2100000, guid: d848e64e8241c164baec87edef0dc487, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8321f357e6631254581db93aa5db3c0e, type: 2}
   m_IsPrefabParent: 0
