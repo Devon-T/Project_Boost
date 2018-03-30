@@ -65,7 +65,8 @@ public class Rocket : MonoBehaviour {
 
     private void LoadFirstLevel()
     {
-        SceneManager.LoadScene(0);
+        sceneID = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(sceneID);
     }
 
     private void LoadNextLevel()
