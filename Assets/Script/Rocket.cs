@@ -8,6 +8,7 @@ public class Rocket : MonoBehaviour {
 
     [SerializeField] float rcsthrust = 250f;
     [SerializeField] float mainTrust = 100f;
+    [SerializeField] float levelChangeDelay = 2f;
 
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip death;
@@ -44,6 +45,7 @@ public class Rocket : MonoBehaviour {
     {
         if (state != State.Alive) { return; } //if dead return
         audioSource.Stop();
+        Rigidbody rigidbody;
         switch (collision.gameObject.tag)
         {
             case "Friendly":
@@ -52,13 +54,13 @@ public class Rocket : MonoBehaviour {
                 state = State.Transcending;
                 audioSource.PlayOneShot(Levelup);
                 LevelupParticle.Play();
-                Invoke("LoadNextLevel", 1f); // parameterise time
+                Invoke("LoadNextLevel", levelChangeDelay); // parameterise time
                 break;
             default:
                 state = State.Dying;
                 audioSource.PlayOneShot(death);
                 deathParticle.Play();
-                Invoke("LoadFirstLevel", 1f);
+                Invoke("LoadFirstLevel", levelChangeDelay);
                 break;
         }
     }
