@@ -21,9 +21,12 @@ public class Rocket : MonoBehaviour {
     Rigidbody rigidBody;
     AudioSource audioSource;
     int sceneID;
-    int currentScene = 0;
+    int Levels;
 
-    
+    bool collisionDisabled = false;
+
+
+
     enum State {Alive, Dying, Transcending}
     State state = State.Alive;
 
@@ -39,11 +42,18 @@ public class Rocket : MonoBehaviour {
         {
             respondToThrustInput();
             respondToRotateInput();
+
         }
-	}
+        // only if debug build allow debug keys to work
+        if (Debug.isDebugBuild)
+        {
+            debugControls();
+        }
+
+    }
     void OnCollisionEnter(Collision collision)
     {
-        if (state != State.Alive) { return; } //if dead return
+        if (state != State.Alive || collisionDisabled) { return; } //if dead return
         audioSource.Stop();
         Rigidbody rigidbody;
         switch (collision.gameObject.tag)
@@ -60,12 +70,12 @@ public class Rocket : MonoBehaviour {
                 state = State.Dying;
                 audioSource.PlayOneShot(death);
                 deathParticle.Play();
-                Invoke("LoadFirstLevel", levelChangeDelay);
+                Invoke("ReloadLevel", levelChangeDelay);
                 break;
         }
     }
 
-    private void LoadFirstLevel()
+    private void ReloadLevel()
     {
         sceneID = SceneManager.GetActiveScene().buildIndex;
         SceneManager.LoadScene(sceneID);
@@ -73,11 +83,11 @@ public class Rocket : MonoBehaviour {
 
     private void LoadNextLevel()
     {
-        int Levels = SceneManager.sceneCountInBuildSettings;
+        Levels = SceneManager.sceneCountInBuildSettings;
         sceneID = SceneManager.GetActiveScene().buildIndex;
-        if (sceneID < Levels)
+        if (sceneID <= Levels)
         {
-            SceneManager.LoadScene(sceneID + 1); // todo fix error for last level finish
+            SceneManager.LoadScene(sceneID + 1);
         } else
         {
             SceneManager.LoadScene(0);
@@ -126,6 +136,29 @@ public class Rocket : MonoBehaviour {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
         rigidBody.freezeRotation = false; //resume normal physics control
+    }
+
+    private void debugControls()
+    {
+        Levels = SceneManager.sceneCountInBuildSettings;
+        sceneID = SceneManager.GetActiveScene().buildIndex;
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            // go to next screen
+            SceneManager.LoadScene(sceneID + 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.K))
+        {
+            // go to last screen
+            SceneManager.LoadScene(sceneID - 1);
+        }
+        else if (Input.GetKeyDown(KeyCode.C))
+        {
+            // todo tuen off collision
+            collisionDisabled = !collisionDisabled;
+
+        }
+
     }
 
 }
