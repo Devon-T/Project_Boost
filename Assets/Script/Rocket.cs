@@ -98,7 +98,7 @@ public class Rocket : MonoBehaviour {
     private void respondToThrustInput()
     {
         float thrustThisFrame = mainTrust * Time.deltaTime;
-        if (Input.GetKey(KeyCode.Space)) //can thrust while rotating
+        if (Input.GetKey(KeyCode.Space) || Input.GetAxis("Vertical")>0f) //can thrust while rotating
         {
             Thrusting(thrustThisFrame);
         }
@@ -121,38 +121,37 @@ public class Rocket : MonoBehaviour {
 
     private void respondToRotateInput()
     {
-        rigidBody.freezeRotation = true; //take manual control of rotation
+        rigidBody.angularVelocity = Vector3.zero; //Stop any angular velocity due to physics engine
         float rotationThisFrame = rcsthrust * Time.deltaTime;
         if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D))
         {
             print("Pick one or go Straight!");
         }
-        else if (Input.GetKey(KeyCode.A))
+        else if (Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal")<0)
         {
             transform.Rotate(Vector3.forward * rotationThisFrame);
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal")>0)
         {
             transform.Rotate(-Vector3.forward * rotationThisFrame);
         }
-        rigidBody.freezeRotation = false; //resume normal physics control
     }
 
     private void debugControls()
     {
         Levels = SceneManager.sceneCountInBuildSettings;
         sceneID = SceneManager.GetActiveScene().buildIndex;
-        if (Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L) || Input.GetButton("Fire2"))
         {
             // go to next screen
             SceneManager.LoadScene(sceneID + 1);
         }
-        else if (Input.GetKeyDown(KeyCode.K))
+        else if (Input.GetKeyDown(KeyCode.K) || Input.GetButton("Fire3"))
         {
             // go to last screen
             SceneManager.LoadScene(sceneID - 1);
         }
-        else if (Input.GetKeyDown(KeyCode.C))
+        else if (Input.GetKeyDown(KeyCode.C) || Input.GetButton("Fire1"))
         {
             // todo tuen off collision
             collisionDisabled = !collisionDisabled;
